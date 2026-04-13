@@ -38,3 +38,8 @@ coverage/
 
 # TypeScript (if noEmit cache appears)
 *.tsbuildinfo
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
