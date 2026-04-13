@@ -1,0 +1,110 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/site/Header.astro";
+import Footer from "../../components/site/Footer.astro";
+import "../../styles/global.css";
+
+const cards = [
+	{
+		title: "Assistant IA feux de forêt pour vos drones",
+		excerpt:
+			"Plug-in optimisant vos opérations drones (DJI, Parrot, etc.) en missions feux de forêt.",
+		href: "/produits/companion",
+		image: "/media/produits/enhaut-agauche.jpg",
+		imageAlt: "Pompier utilisant une télécommande drone devant un incendie de nuit",
+	},
+	{
+		title: "Agent IA feux de forêt pour avions et hélicoptères",
+		excerpt:
+			"Couche logicielle automatisant l’essentiel des tâches chronophages pour le pilote ou l’opérateur de bord.",
+		href: "/produits/coperator",
+		image: "/media/produits/enhaut-adroite.webp",
+		imageAlt: "Plateforme aérienne en vol au-dessus des massifs forestiers",
+	},
+	{
+		title: "Service clés en main de détection et monitoring par avion",
+		excerpt:
+			"Surveillance des forêts, détection, monitoring des feux et transmission des alertes en temps réel.",
+		href: "/produits/patrol",
+		image: "/media/produits/enbas-aguache.jpg",
+		imageAlt: "Avion léger bi-moteur en vol au-dessus d’un paysage rural",
+	},
+	{
+		title: "Service clés en main de détection et monitoring par drone",
+		excerpt:
+			"Drone autonome, surveillance, détection et alertes en temps réel — disponibilité selon calendrier produit.",
+		href: "/produits/monitoring-drone",
+		image: "/media/produits/enbas-adroite.webp",
+		imageAlt: "Surveillance par drone — vol au-dessus du couvert forestier",
+	},
+];
+---
+
+<BaseLayout
+	title="Produits — Albatros"
+	description="Solutions IA pour drones, avions et services clés en main — lutte contre les feux de forêt."
+>
+	<Header variant="overlay" />
+	<main>
+		<section
+			class="relative flex min-h-[75vh] items-end bg-cover bg-center pb-16 md:min-h-[85vh] md:items-center md:pb-24"
+			style="background-image: url('/media/produits/banner-produit.webp');"
+			aria-labelledby="produits-hero-heading"
+		>
+			<div class="absolute inset-0 bg-black/40 md:bg-black/35"></div>
+			<div class="relative z-10 mx-auto w-full max-w-site px-2 pt-28 sm:px-4 lg:px-5">
+				<div class="border-l-4 border-albatros-yellow pl-4">
+					<p class="mb-3 inline-block rounded bg-white/15 px-3 py-1 font-display text-xs font-semibold text-white">
+						Produits
+					</p>
+					<h1
+						id="produits-hero-heading"
+						class="max-w-4xl font-display text-3xl font-extrabold tracking-tight text-white uppercase md:text-4xl lg:text-5xl"
+					>
+						Pour les professionnels
+					</h1>
+				</div>
+				<
+					href="#grille-produits"
+					class="mt-8 inline-flex items-center justify-center rounded-lg bg-albatros-yellow px-8 py-3.5 font-display text-sm font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
+				>
+					Découvrir
+				</a>
+			</div>
+		</section>
+
+		<section
+			id="grille-produits"
+			class="scroll-mt-24 bg-white py-16 md:py-24"
+			aria-labelledby="grille-heading"
+		>
+			<div class="mx-auto max-w-site px-2 sm:px-4 lg:px-5">
+				<h2 id="grille-heading" class="sr-only">Nos offres</h2>
+				<div class="grid gap-8 md:gap-10 lg:grid-cols-2">
+					{
+						cards.map((c) => (
+							<article class="card-hover overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm ring-1 ring-zinc-100">
+								<div class="grid md:grid-cols-2">
+									<div class="relative aspect-[4/3] md:aspect-auto md:min-h-[240px]">
+										<img src={c.image} alt={c.imageAlt} class="h-full w-full object-cover" loading="lazy" />
+									</div>
+									<div class="flex flex-col justify-center p-6 md:p-8">
+										<h3 class="font-display text-base font-bold text-albatros-yellow md:text-lg">{c.title}</h3>
+										<p class="mt-3 text-sm leading-relaxed text-zinc-600">{c.excerpt}</p>
+										<a
+											href={c.href}
+											class="mt-6 inline-flex self-start rounded-md bg-albatros-yellow px-5 py-2 font-display text-xs font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
+										>
+											Voir
+										</a>
+									</div>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>

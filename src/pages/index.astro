@@ -1,0 +1,181 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import "../styles/global.css";
+---
+
+<BaseLayout title="Albatros — Lutte contre les feux de forêt" description="Albatros met l'IA et les capteurs au service de la détection et du monitoring des feux de forêt.">
+	<Header />
+	<main>
+		<!-- Hero -->
+		<section class="relative flex min-h-screen items-center" aria-label="Accueil">
+			<div class="absolute inset-0 z-0">
+				<video
+					class="h-full w-full object-cover"
+					autoplay
+					muted
+					loop
+					playsinline
+					preload="metadata"
+					poster="/media/home/banner-fire-detected.webp"
+				>
+					<source src="/media/home/hero-view-forest.mp4" type="video/mp4" />
+				</video>
+				<div class="absolute inset-0 bg-black/25" aria-hidden="true"></div>
+			</div>
+			<div class="relative z-10 mx-auto w-full max-w-site px-2 pt-28 pb-20 sm:px-4 lg:px-5">
+				<div class="max-w-4xl">
+					<h1
+						class="font-display text-2xl font-extrabold leading-snug tracking-tight text-white uppercase drop-shadow-lg sm:text-3xl md:text-4xl lg:text-[2.35rem] xl:text-[2.5rem]"
+					>
+						<span class="inline-block border-b-2 border-albatros-yellow pb-1">Mettons la technologie</span><br />
+						<span class="mt-2 inline-block border-b-2 border-albatros-yellow pb-1 md:mt-3">au service de la lutte contre</span><br />
+						<span class="mt-2 inline-block border-b-2 border-albatros-yellow pb-1 md:mt-3">les feux de forêt</span>
+					</h1>
+					<a
+						href="/missions"
+						class="cta-shadow mt-8 inline-flex items-center justify-center rounded-lg bg-albatros-yellow px-8 py-3.5 font-display text-sm font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
+					>
+						Notre solution
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Missions -->
+		<section
+			id="missions"
+			class="relative scroll-mt-24 bg-black py-24 md:min-h-[90vh] md:py-32"
+			style="background-image: url('/media/home/banner-fire-detected.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+		>
+			<div class="absolute inset-0 bg-black/35" aria-hidden="true"></div>
+			<div class="relative z-10 mx-auto max-w-site px-2 sm:px-4 lg:px-5">
+				<header class="tech-section-header">
+					<h2 class="tech-section-title tech-section-title--inverse">Missions</h2>
+				</header>
+				<div class="mt-10 max-w-2xl space-y-8">
+					<div>
+						<h3 class="tech-section-subtitle">
+							Détection des départs de feu par intelligence artificielle
+						</h3>
+						<p class="tech-section-lead tech-section-lead--inverse mt-4 md:mt-5">
+							Les drones embarquent une caméra multi-spectrale qui couvre de grandes surfaces de forêt, plus
+							qu’aucun autre moyen de détection en temps réel. L’IA permet de détecter un feu moins de 2
+							minutes après son éclosion.
+						</p>
+					</div>
+					<div>
+						<h3 class="tech-section-subtitle">Monitoring des feux par intelligence artificielle</h3>
+						<p class="tech-section-lead tech-section-lead--inverse mt-4 md:mt-5">
+							Lorsqu’un feu est détecté, un drone Albatros le survole à haute altitude, capture et traite les
+							données relatives à l’évolution de l’incendie, permettant aux pompiers de mettre en place la
+							stratégie d’extinction optimale.
+						</p>
+					</div>
+					<div class="mt-8 flex flex-wrap gap-4">
+						<a
+							href="/technologie"
+							class="inline-flex items-center justify-center rounded-lg bg-albatros-yellow px-8 py-3.5 font-display text-sm font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
+						>
+							Notre technologie
+						</a>
+						<a
+							href="/produits"
+							class="inline-flex items-center justify-center rounded-lg border-2 border-white/80 px-8 py-3.5 font-display text-sm font-semibold text-white uppercase tracking-wide transition hover:bg-white/10"
+						>
+							Nos produits
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Impact (fond : bannière feu / fumée) -->
+		<section
+			id="impact"
+			class="relative scroll-mt-24 overflow-hidden bg-black py-20 md:py-28"
+			style="background-image: url('/media/home/banner3.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+			aria-label="Impact — incendie et panache de fumée en arrière-plan"
+		>
+			<div class="absolute inset-0 bg-black/20" aria-hidden="true"></div>
+			<div class="relative z-10 mx-auto max-w-site px-2 sm:px-4 lg:px-5">
+				<header class="tech-section-header">
+					<h2 class="tech-section-title tech-section-title--inverse">Impact</h2>
+				</header>
+				<div class="mt-10 grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
+					<div
+						class="impact-video-frame relative mx-auto aspect-[9/16] w-full max-w-[13.5rem] overflow-hidden rounded-lg bg-black shadow-xl ring-1 ring-white/10 sm:max-w-[15rem] md:max-w-[16rem] lg:mx-0"
+						data-impact-wrap
+						style="background-image: url('/media/home/fond-video.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+					>
+						<button
+							type="button"
+							class="impact-play absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-black/30 transition hover:bg-black/40"
+							aria-label="Lire la vidéo sur l’impact des feux de forêt"
+						>
+							<span
+								class="flex h-16 w-16 items-center justify-center rounded-full bg-albatros-yellow text-white shadow-lg"
+							>
+								<svg class="ml-1 h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M8 5v14l11-7z"></path>
+								</svg>
+							</span>
+							<span class="max-w-[90%] text-center font-display text-xs font-semibold uppercase tracking-wide text-white drop-shadow md:text-sm">
+								Incendie de Ribaute — reportage
+							</span>
+						</button>
+						<video
+							class="impact-video absolute inset-0 z-20 hidden h-full w-full object-cover object-center"
+							controls
+							playsinline
+							preload="none"
+							poster="/media/home/fond-video.webp"
+						>
+							<source src="/media/home/impact-fires-speed-solutions.mp4" type="video/mp4" />
+						</video>
+					</div>
+					<div class="flex flex-col justify-center gap-4">
+						<div
+							class="rounded-lg border border-white/10 bg-white/10 px-6 py-5 backdrop-blur-sm md:px-8 md:py-6"
+						>
+							<div class="border-l-4 border-albatros-yellow pl-4">
+								<p class="tech-impact-stat-value">+ 1 million d’hectares</p>
+								<p class="tech-impact-stat-caption">de forêt brûlée en Europe en 2023</p>
+							</div>
+						</div>
+						<div
+							class="rounded-lg border border-white/10 bg-white/10 px-6 py-5 backdrop-blur-sm md:px-8 md:py-6"
+						>
+							<div class="border-l-4 border-albatros-yellow pl-4">
+								<p class="tech-impact-stat-value">+ 150 millions de tonnes de CO₂</p>
+								<p class="tech-impact-stat-caption">émises par les feux de forêt en Europe en 2023</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>
+
+<script>
+	function initImpactPlayer() {
+		const wrap = document.querySelector("[data-impact-wrap]");
+		if (!wrap) return;
+		const btn = wrap.querySelector<HTMLButtonElement>(".impact-play");
+		const video = wrap.querySelector<HTMLVideoElement>(".impact-video");
+		if (!btn || !video) return;
+
+		const open = () => {
+			btn.classList.add("hidden");
+			video.classList.remove("hidden");
+			void video.play();
+		};
+		btn.addEventListener("click", open);
+	}
+
+	initImpactPlayer();
+	document.addEventListener("astro:after-swap", initImpactPlayer);
+</script>

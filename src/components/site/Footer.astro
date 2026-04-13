@@ -1,0 +1,83 @@
+---
+import { getLangSwitchUrls } from "../../lib/langSwitch";
+
+const { locale } = getLangSwitchUrls(Astro.url.pathname);
+const prefix = locale === "en" ? "/en" : "";
+const homeHref = prefix === "" ? "/" : "/en";
+
+const colNav = [
+	{ href: homeHref, label: locale === "en" ? "Home" : "Accueil" },
+	{ href: `${prefix}/missions`, label: "Missions" },
+	{ href: `${prefix}/technologie`, label: locale === "en" ? "Technology" : "Technologie" },
+	{ href: `${prefix}/produits`, label: locale === "en" ? "Products" : "Produits" },
+	{ href: `${prefix}/actualites`, label: locale === "en" ? "News" : "Actualités" },
+];
+const colContact = [
+	{ href: `${prefix}/contact`, label: "Contact" },
+	{ href: "mailto:contact@albatros.team", label: "contact@albatros.team" },
+	{ href: `${prefix}/contact`, label: locale === "en" ? "Contact us" : "Nous contacter" },
+];
+
+const tagline =
+	locale === "en"
+		? "The best technology in service of the environment."
+		: "La meilleure technologie au service de l'environnement.";
+
+const legalLabel = locale === "en" ? "Legal notice" : "Mentions légales";
+const rights =
+	locale === "en" ? "© Albatros 2026 — all rights reserved" : "© Albatros 2026 — tous droits réservés";
+---
+
+<footer class="bg-albatros-footer text-white">
+	<div class="mx-auto max-w-site px-2 py-14 sm:px-4 lg:px-5">
+		<div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+			<div>
+				<a
+					href={homeHref}
+					class="inline-block font-display text-lg font-extrabold tracking-wide text-albatros-yellow uppercase transition hover:opacity-90"
+				>
+					Albatros
+				</a>
+				<p class="mt-3 max-w-xs text-sm leading-relaxed text-white/75">
+					{tagline}
+				</p>
+			</div>
+			<div>
+				<ul class="space-y-2 text-sm font-medium text-white/85">
+					{
+						colNav.map(({ href, label }) => (
+							<li>
+								<a href={href} class="transition hover:text-albatros-yellow">
+									{label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+			<div>
+				<ul class="space-y-2 text-sm font-medium text-white/85">
+					{
+						colContact.map(({ href, label }) => (
+							<li>
+								<a href={href} class="transition hover:text-albatros-yellow">
+									{label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+			<div class="text-sm text-white/75">
+				<p>Toulouse, France</p>
+				<p class="mt-1">Paris, France</p>
+			</div>
+		</div>
+		<div class="mt-12 flex flex-col gap-2 border-t border-white/10 pt-8 text-xs text-white/55 sm:flex-row sm:justify-between">
+			<p>{rights}</p>
+			<a href={`${prefix}/mentions-legales`} class="transition hover:text-albatros-yellow">
+				{legalLabel}
+			</a>
+		</div>
+	</div>
+</footer>

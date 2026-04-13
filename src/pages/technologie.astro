@@ -1,0 +1,124 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import "../styles/global.css";
+
+const methodDiagramSrc = "/media/technologie/methode-albatros.webp";
+---
+
+<BaseLayout
+	title="Technologie — Albatros"
+	description="Méthode Albatros : IA bi-spectrale, détection avancée pour la lutte contre les feux de forêt."
+>
+	<Header variant="overlay" />
+	<main>
+		<!-- Hero -->
+		<section class="relative flex min-h-[90vh] items-end md:min-h-screen md:items-center" aria-labelledby="tech-hero-heading">
+			<div class="absolute inset-0 z-0">
+				<img
+					src="/media/technologie/image-banner.webp"
+					alt=""
+					class="h-full w-full object-cover object-center"
+					loading="eager"
+				/>
+				<div class="absolute inset-0 bg-black/40 md:bg-black/35" aria-hidden="true"></div>
+			</div>
+			<div class="relative z-10 mx-auto w-full max-w-site px-2 pt-32 pb-16 sm:px-5 md:py-28 lg:px-6">
+				<div class="max-w-4xl">
+					<h1
+						id="tech-hero-heading"
+						class="font-display text-2xl font-extrabold leading-tight tracking-tight text-white uppercase sm:text-3xl md:text-4xl lg:text-[2.35rem] xl:text-5xl"
+					>
+						<span class="inline-block border-b-2 border-albatros-yellow pb-1">
+							L’IA qui optimise la lutte
+						</span>
+						<br />
+						<span class="mt-2 inline-block border-b-2 border-albatros-yellow pb-1 md:mt-3">
+							contre les feux de forêt
+						</span>
+					</h1>
+					<a
+						href="#methode"
+						class="mt-10 inline-flex items-center justify-center rounded-lg bg-albatros-yellow px-8 py-3.5 font-display text-sm font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
+					>
+						Découvrir
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- La méthode d'Albatros -->
+		<section
+			id="methode"
+			class="scroll-mt-24 bg-white py-16 text-zinc-900 md:py-24"
+			aria-labelledby="methode-heading"
+		>
+			<div class="mx-auto max-w-site px-2 sm:px-4 lg:px-5">
+				<header class="tech-section-header">
+					<h2 id="methode-heading" class="tech-section-title">La méthode d’Albatros</h2>
+				</header>
+				<div class="tech-section-panel w-full">
+					<p class="tech-section-lead w-full">
+						La particularité de cette solution réside dans son entraînement
+						<strong>bispectral</strong>. Cette approche lui confère une
+						compréhension situationnelle nettement supérieure et réduit considérablement les faux positifs. C’est la
+						conjugaison d’une situation positive en spectre visible et d’une situation positive en spectre infrarouge
+						qui déclenche l’identification d’un départ de feu par l’IA Albatros.
+					</p>
+				</div>
+				<div class="mt-10 overflow-hidden rounded-2xl shadow-lg ring-1 ring-zinc-200">
+					<img
+						src={methodDiagramSrc}
+						alt="Diagramme : capteurs optroniques EO et IR, IA bout-en-bout, informations actionnelles vers les opérationnels"
+						class="h-auto w-full object-contain bg-zinc-50"
+						loading="lazy"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- Détection DJI M30T -->
+		<section
+			class="bg-albatros-charcoal py-16 md:py-24"
+			aria-labelledby="dji-heading"
+		>
+			<div class="mx-auto max-w-site px-2 sm:px-4 lg:px-5">
+				<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+					<div>
+						<header class="tech-section-header">
+							<h2 id="dji-heading" class="tech-section-title tech-section-title--inverse">
+								Détection avancée via DJI M30T
+							</h2>
+						</header>
+						<p class="tech-section-lead tech-section-lead--inverse mt-6 md:mt-8">
+							Intégration avec les flux des drones équipés pour la surveillance des massifs : analyse des
+							scènes, mise en évidence des fumées et des zones à risque, dans un format adapté aux
+							opérateurs.
+						</p>
+						<a
+							href="/produits"
+							class="mt-8 inline-flex items-center justify-center rounded-lg bg-albatros-yellow px-8 py-3.5 font-display text-sm font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
+						>
+							Découvrir nos produits
+						</a>
+					</div>
+					<div class="overflow-hidden rounded-xl ring-1 ring-white/10">
+						<video
+							class="aspect-video w-full object-cover"
+							autoplay
+							muted
+							loop
+							playsinline
+							preload="metadata"
+							aria-label="Démonstration POC — détection et analyse"
+						>
+							<source src="/media/technologie/poc2.mp4" type="video/mp4" />
+						</video>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>

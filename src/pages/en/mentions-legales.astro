@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/site/Header.astro";
+import Footer from "../../components/site/Footer.astro";
+import "../../styles/global.css";
+---
+
+<BaseLayout title="Legal notice — Albatros" description="Legal information for the Albatros website." lang="en">
+	<Header variant="light" />
+	<main class="bg-zinc-100 py-14 text-zinc-900 md:py-20">
+		<div class="mx-auto max-w-4xl px-2 sm:px-4 lg:px-5">
+			<h1 class="font-display text-2xl font-bold md:text-3xl">Legal notice</h1>
+			<div class="mt-3 h-1 w-16 rounded-full bg-albatros-yellow"></div>
+			<p class="mt-4 text-sm text-zinc-600">
+				Last updated: April 2026. The information below is provided for guidance and should be reviewed by your
+				legal counsel.
+			</p>
+
+			<section class="mt-10">
+				<h2 class="font-display text-lg font-bold text-albatros-yellow">Publisher</h2>
+				<p class="mt-3 text-sm leading-relaxed">
+					<strong>Albatros</strong><br />
+					Registered offices: Toulouse and Paris, France<br />
+					Contact:
+					<a href="mailto:contact@albatros.team" class="font-medium text-albatros-yellow underline-offset-2 hover:underline">
+						contact@albatros.team
+					</a>
+				</p>
+			</section>
+
+			<section class="mt-10">
+				<h2 class="font-display text-lg font-bold text-albatros-yellow">Hosting</h2>
+				<p class="mt-3 text-sm leading-relaxed">
+					This website is hosted by your hosting provider (to be completed: company name, address and contact).
+				</p>
+			</section>
+
+			<section class="mt-10">
+				<h2 class="font-display text-lg font-bold text-albatros-yellow">Intellectual property</h2>
+				<p class="mt-3 text-sm leading-relaxed">
+					All content on this site (text, images, video, logos) is owned by Albatros or used under licence.
+					Unauthorised reproduction is prohibited.
+				</p>
+			</section>
+
+			<section class="mt-10">
+				<h2 class="font-display text-lg font-bold text-albatros-yellow">Personal data</h2>
+				<p class="mt-3 text-sm leading-relaxed">
+					Data submitted through forms is used by Albatros to respond to your requests. To exercise your rights
+					(access, rectification, erasure), write to
+					<a href="mailto:contact@albatros.team" class="font-medium text-albatros-yellow underline-offset-2 hover:underline">
+						contact@albatros.team
+					</a>
+					. A detailed privacy policy may complement this page.
+				</p>
+			</section>
+		</div>
+	</main>
+	<Footer />
+</BaseLayout>

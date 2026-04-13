@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+	--font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+	--font-body: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+	/* Largeur max du contenu */
+	--max-width-site: 100rem;
+
+	--color-albatros-yellow: #f5b93e;
+	--color-albatros-yellow-hover: #ffca5c;
+	--color-albatros-charcoal: #2a2a2a;
+	--color-albatros-footer: #252525;
+}
+
+@layer base {
+	html {
+		@apply scroll-smooth;
+	}
+
+	body {
+		@apply bg-black font-body text-white antialiased;
+	}
+}
+
+/* Titres + textes de section (Technologie, accueil Missions / Impact, réutilisable ailleurs) */
+@layer components {
+	.tech-section-header {
+		@apply border-l-4 border-albatros-yellow pl-4 md:pl-5;
+	}
+
+	.tech-section-title {
+		@apply font-display text-xl font-extrabold uppercase leading-snug tracking-[0.1em] text-zinc-900 md:text-2xl lg:text-[1.7rem];
+	}
+
+	.tech-section-title--inverse {
+		@apply text-white drop-shadow-sm;
+	}
+
+	.tech-section-lead {
+		@apply max-w-none font-display text-base font-normal leading-[1.75] text-zinc-600 antialiased md:text-lg md:leading-[1.72];
+	}
+
+	.tech-section-lead--inverse {
+		@apply text-white/90;
+	}
+
+	.tech-section-lead strong {
+		@apply font-semibold text-albatros-yellow;
+	}
+
+	.tech-section-panel {
+		@apply mt-8 rounded-2xl border border-zinc-100/90 bg-gradient-to-br from-zinc-50 to-white px-6 py-7 shadow-[0_1px_0_0_rgb(255_255_255_/_0.8)_inset] ring-1 ring-zinc-200/60 md:mt-10 md:px-8 md:py-9;
+	}
+
+	.tech-section-panel .tech-section-lead {
+		@apply text-zinc-600;
+	}
+
+	/* Sous-titres sur fond photo / sombre (ex. cartes Mission accueil) */
+	.tech-section-subtitle {
+		@apply font-display text-sm font-extrabold uppercase leading-snug tracking-[0.08em] text-white drop-shadow-sm md:text-base;
+	}
+
+	/* Cards produits & actualités — hover lift */
+	.card-hover {
+		@apply transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-lg;
+	}
+
+	/* CTA boutons — ombre subtile */
+	.cta-shadow {
+		@apply shadow-md shadow-black/15;
+	}
+
+	/* Blocs chiffres Impact (accueil) */
+	.tech-impact-stat-value {
+		@apply font-display text-xl font-extrabold uppercase leading-tight tracking-[0.06em] text-white drop-shadow-sm md:text-2xl lg:text-[1.65rem];
+	}
+
+	.tech-impact-stat-caption {
+		@apply mt-2 font-display text-xs font-semibold leading-relaxed tracking-wide text-white/85 md:mt-3 md:text-sm;
+	}
+}

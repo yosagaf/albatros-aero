@@ -1,0 +1,41 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+	lang?: string;
+}
+
+const {
+	title,
+	description = "Albatros — technologie et intelligence artificielle au service de la lutte contre les feux de forêt.",
+	lang = "fr",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
+			rel="stylesheet"
+		/>
+		<title>{title}</title>
+		<script is:inline>
+			document.documentElement.style.scrollBehavior = 'auto';
+			window.scrollTo(0, 0);
+			requestAnimationFrame(function () {
+				document.documentElement.style.scrollBehavior = '';
+			});
+		</script>
+	</head>
+	<body class="min-h-screen">
+		<slot />
+	</body>
+</html>

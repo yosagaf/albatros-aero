@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/site/Header.astro";
+import Footer from "../../components/site/Footer.astro";
+import ContactForm from "../../components/contact/ContactForm.astro";
+import "../../styles/global.css";
+
+const articles = [
+	{
+		title: "At the Firefighters Congress 2025",
+		date: "8 October 2025",
+		excerpt:
+			"Highlights from our discussions with aerial operators and fire services on early detection and information sharing.",
+		details:
+			"The 2025 National Firefighters Congress gave Albatros the opportunity to present its aerial detection and monitoring solutions to civil safety decision-makers. Our teams engaged directly with fire services on the operational challenges of wildfire surveillance and demonstrated how our technologies enable faster, better-coordinated field response.",
+		image: "/media/actualites/congres.jpeg",
+	},
+	{
+		title: "Albatros at the Paris Air Show 2025",
+		date: "17 June 2025",
+		excerpt:
+			"Highlights from our presence at the Paris Air Show and meetings with aerial surveillance and wildfire response stakeholders.",
+		details:
+			"At the Paris International Aeronautics and Space Show, Albatros showcased its wildfire surveillance and detection capabilities. This major event provided the opportunity to meet industry partners, aerial operators and institutional representatives interested in our real-time monitoring solutions.",
+		image: "/media/actualites/bourget.jpeg",
+	},
+	{
+		title: "Albatros at the World Professional Meeting",
+		date: "26 March 2025",
+		excerpt:
+			"Showcasing our aerial detection and monitoring solutions at the World Civil Safety Conference.",
+		details:
+			"At the World Civil Safety Conference, Albatros exhibited its innovative early-detection and wildfire monitoring solutions. This international event brought together key civil protection stakeholders, providing an ideal platform to demonstrate the effectiveness of our aerial surveillance systems to a professional audience.",
+		image: "/media/actualites/rendez-vous-mondiale.jpeg",
+	},
+	{
+		title: "In partnership with Aude firefighters, an experiment",
+		date: "12 February 2024",
+		excerpt:
+			"To address the growing risk, SDIS 11 sees Albatros as one of the solutions for the future.",
+		details:
+			"In collaboration with the Aude fire service, Albatros conducted a real-world experiment to evaluate early wildfire detection and field-team support. Faced with increasing fire risk in the region, this partnership aims to test and validate technological solutions that improve response time and operational effectiveness.",
+		image: "/media/technologie/image-banner.webp",
+	},
+];
+---
+
+<BaseLayout title="News — Albatros" description="News, events and updates from Albatros." lang="en">
+	<Header variant="light" />
+	<main>
+		<section class="bg-white py-14 text-zinc-900 md:py-20" aria-labelledby="actu-heading">
+			<div class="mx-auto max-w-site px-2 sm:px-4 lg:px-5">
+				<h1 id="actu-heading" class="text-center font-display text-2xl font-extrabold uppercase tracking-tight md:text-3xl lg:text-4xl">
+					News from Albatros
+				</h1>
+				<div class="mx-auto mt-4 h-1 w-16 rounded-full bg-albatros-yellow"></div>
+				<div class="mt-14 grid gap-8 md:grid-cols-2">
+					{
+						articles.map((a) => (
+							<article class="card-hover flex overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50/80 shadow-sm">
+								<div class="grid h-full w-full sm:grid-cols-5">
+									<div class="relative sm:col-span-2 sm:min-h-[220px]">
+										<img src={a.image} alt="" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+									</div>
+									<div class="flex flex-col p-5 sm:col-span-3 sm:p-6">
+										<h2 class="font-display text-base font-bold text-zinc-900 md:text-lg">{a.title}</h2>
+										<p class="mt-2 font-display text-xs font-medium text-zinc-500">{a.date}</p>
+										<p class="mt-3 text-sm leading-relaxed text-zinc-600">{a.excerpt}</p>
+										<p class="mt-2 text-sm leading-relaxed text-zinc-500">{a.details}</p>
+									</div>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="border-t border-white/10 bg-albatros-charcoal py-16 text-white md:py-20" id="ecrivez-nous">
+			<div class="mx-auto max-w-4xl px-2 sm:px-4 lg:px-5">
+				<h2 class="text-center font-display text-xl font-semibold md:text-2xl">Get in touch</h2>
+				<ContactForm formName="actualites" idPrefix="actualites-en" lang="en" class="mt-10 space-y-5" />
+			</div>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>

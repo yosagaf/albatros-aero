@@ -1,0 +1,36 @@
+---
+import ProductDetail from "../../../components/product/ProductDetail.astro";
+---
+
+<ProductDetail
+	lang="en"
+	title="Coperator — Albatros"
+	description="AI co-pilot for fixed-wing aircraft and helicopters — wildfire reconnaissance."
+	productName="Coperator"
+	subtitle="The AI co-operator for aircraft and helicopters on wildfire investigation missions."
+	introTitle="Artificial intelligence for aerial missions"
+	introParagraphs={[
+		"Coperator integrates as a software layer on your moving-map environment: detection, tracking and decision support, without replacing crew judgement.",
+		"Models are trained to limit false positives while highlighting relevant visual and thermal cues early.",
+	]}
+	whyTitle="Why Coperator?"
+	bullets={[
+		"Faster detection of ignitions and mission-relevant signatures.",
+		"Better tactical readability in complex or multi-fire situations.",
+		"Reduced crew workload on annotation and watch tasks.",
+		"Output embedded in the onboard systems you already use.",
+	]}
+	features={[
+		"Automated forest surveillance",
+		"AI-based fire detection",
+		"Automatic notification to fire services",
+		"AI-based spotting detection",
+		"Real-time analysis of fire dynamics",
+	]}
+	ctaPhrase="Ready to see Coperator in action?"
+	ctaPrimaryLabel="Request a demo"
+	images={[
+		{ src: "/media/produits/coperator-vue-infrarouge.png", alt: "Infrared view — AI-detected fire contour" },
+		{ src: "/media/produits/coperator-vue-satellite.png", alt: "Satellite view — detected fire perimeters" },
+	]}
+/>

@@ -1,0 +1,193 @@
+---
+import { getLangSwitchUrls, normalizePathname } from "../../lib/langSwitch";
+
+interface Props {
+	/** Header transparent sur hero (accueil) ; bandeau clair sur pages intérieures (ex. contact). */
+	variant?: "overlay" | "light";
+	/** Surcharge du chemin pour souligner un parent (ex. `/produits` sur une fiche). */
+	activeHref?: string;
+}
+
+const { variant = "overlay", activeHref } = Astro.props;
+
+const { frHref, enHref, locale } = getLangSwitchUrls(Astro.url.pathname);
+const prefix = locale === "en" ? "/en" : "";
+const homeHref = prefix === "" ? "/" : "/en";
+
+const en = locale === "en";
+const homeLabel = en ? "Home" : "Accueil";
+const nav = [
+	{ href: homeHref, label: homeLabel },
+	{ href: `${prefix}/missions`, label: "Missions" },
+	{ href: `${prefix}/technologie`, label: en ? "Technology" : "Technologie" },
+	{ href: `${prefix}/produits`, label: en ? "Products" : "Produits" },
+	{ href: `${prefix}/actualites`, label: en ? "News" : "Actualités" },
+	{ href: `${prefix}/contact`, label: "Contact" },
+] as const;
+
+const pathForActive = activeHref ?? Astro.url.pathname;
+const normalizedCurrent = normalizePathname(pathForActive);
+
+const isNavActive = (href: string) => {
+	const h = normalizePathname(href);
+	if (h === normalizedCurrent) return true;
+	if (h === "/" || h === "/en") return false;
+	return normalizedCurrent.startsWith(`${h}/`);
+};
+
+const isLight = variant === "light";
+
+const headerClass = isLight
+	? "relative z-50 bg-zinc-200 text-zinc-900 shadow-sm"
+	: "absolute top-0 right-0 left-0 z-50 text-white";
+
+const linkClass = (href: string) => {
+	const active = isNavActive(href);
+	const base = "transition";
+	if (isLight) {
+		return active
+			? `${base} font-bold text-albatros-yellow`
+			: `${base} text-zinc-800 hover:text-albatros-yellow`;
+	}
+	return active ? `${base} font-bold text-albatros-yellow` : `${base} hover:text-albatros-yellow`;
+};
+
+const mobileBtnClass = isLight
+	? "border-zinc-400 bg-white/80 text-zinc-900"
+	: "border-white/30 bg-black/20 text-white";
+
+const langWrapClass = isLight
+	? "border-zinc-300 bg-white/70 p-0.5 text-xs font-bold"
+	: "border-white/25 bg-black/20 p-0.5 text-xs font-bold";
+
+const langInactiveClass = isLight
+	? "rounded px-2 py-1 text-zinc-700 transition hover:bg-white/60 hover:text-zinc-900"
+	: "rounded px-2 py-1 text-white/90 transition hover:bg-white/10 hover:text-white";
+
+const langActiveClass = isLight
+	? "rounded bg-albatros-yellow px-2 py-1 text-white"
+	: "rounded bg-albatros-yellow px-2 py-1 text-white";
+
+const mobilePanelClass = isLight
+	? "border-t border-zinc-300 bg-zinc-100 px-4 py-4 text-zinc-900 lg:hidden"
+	: "border-t border-white/10 bg-black/90 px-4 py-4 lg:hidden";
+---
+
+<header class:list={[headerClass, "font-display"]} data-site-header>
+	<div class="mx-auto flex max-w-site items-center justify-between gap-4 px-2 pt-6 pb-4 sm:px-4 lg:px-5">
+		<a
+			href={homeHref}
+			class:list={["text-xl font-extrabold tracking-wide text-albatros-yellow sm:text-2xl uppercase"]}
+		>
+			Albatros
+		</a>
+
+		<button
+			type="button"
+			class:list={["flex h-11 w-11 items-center justify-center rounded-md lg:hidden", mobileBtnClass]}
+			aria-label="Ouvrir le menu"
+			aria-expanded="false"
+			data-mobile-nav-toggle
+		>
+			<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"
+				></path>
+			</svg>
+		</button>
+
+		<nav class="hidden items-center gap-6 text-sm font-semibold lg:flex xl:gap-8">
+			{
+				nav.map(({ href, label }) => (
+					<a href={href} class:list={[linkClass(href)]}>
+						{label}
+					</a>
+				))
+			}
+			<div
+				class:list={["ml-2 flex items-center gap-0.5 rounded-md", langWrapClass]}
+				role="group"
+				aria-label="Langue"
+			>
+				{
+					locale === "fr" ? (
+						<span class:list={[langActiveClass]} aria-current="true">
+							FR
+						</span>
+					) : (
+						<a href={frHref} class:list={[langInactiveClass]} hreflang="fr" lang="fr">
+							FR
+						</a>
+					)
+				}
+				{
+					locale === "en" ? (
+						<span class:list={[langActiveClass]} aria-current="true">
+							EN
+						</span>
+					) : (
+						<a href={enHref} class:list={[langInactiveClass]} hreflang="en" lang="en">
+							EN
+						</a>
+					)
+				}
+			</div>
+		</nav>
+	</div>
+
+	<div class:list={[mobilePanelClass]} hidden data-mobile-nav-panel>
+		<nav class="flex flex-col gap-3 text-sm font-semibold">
+			{
+				nav.map(({ href, label }) => (
+					<a href={href} class:list={["py-1", linkClass(href)]}>
+						{label}
+					</a>
+				))
+			}
+			<div
+				class:list={["mt-2 flex gap-0.5 self-start rounded-md", langWrapClass]}
+				role="group"
+				aria-label="Langue"
+			>
+				{
+					locale === "fr" ? (
+						<span class:list={[langActiveClass]} aria-current="true">
+							FR
+						</span>
+					) : (
+						<a href={frHref} class:list={[langInactiveClass]} hreflang="fr" lang="fr">
+							FR
+						</a>
+					)
+				}
+				{
+					locale === "en" ? (
+						<span class:list={[langActiveClass]} aria-current="true">
+							EN
+						</span>
+					) : (
+						<a href={enHref} class:list={[langInactiveClass]} hreflang="en" lang="en">
+							EN
+						</a>
+					)
+				}
+			</div>
+		</nav>
+	</div>
+</header>
+
+<script>
+	function initMobileNav() {
+		const toggle = document.querySelector("[data-mobile-nav-toggle]");
+		const panel = document.querySelector("[data-mobile-nav-panel]");
+		if (!toggle || !panel) return;
+
+		toggle.addEventListener("click", () => {
+			const open = panel.hasAttribute("hidden");
+			if (open) panel.removeAttribute("hidden");
+			else panel.setAttribute("hidden", "");
+			toggle.setAttribute("aria-expanded", open ? "true" : "false");
+		});
+	}
+	initMobileNav();
+	document.addEventListener("astro:after-swap", initMobileNav);
+</script>

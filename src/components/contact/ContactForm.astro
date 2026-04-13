@@ -1,0 +1,99 @@
+---
+/**
+ * Formulaire contact (Netlify ou PUBLIC_CONTACT_FORM_ACTION).
+ */
+interface Props {
+	formName: string;
+	idPrefix: string;
+	class?: string;
+	lang?: "fr" | "en";
+	/** Cible après envoi (mode Netlify). */
+	thankYouPath?: string;
+}
+
+const {
+	formName,
+	idPrefix,
+	class: className = "mt-12 space-y-5",
+	lang = "fr",
+	thankYouPath,
+} = Astro.props;
+
+const en = lang === "en";
+const defaultMerci = en ? "/en/contact/merci/" : "/contact/merci/";
+const merciPath = thankYouPath ?? defaultMerci;
+
+const externalFormAction = import.meta.env.PUBLIC_CONTACT_FORM_ACTION?.trim() ?? "";
+const formAction = externalFormAction || merciPath;
+const useNetlify = !externalFormAction;
+
+const netlifyFormAttrs = useNetlify
+	? ({ "data-netlify": "true", "data-netlify-honeypot": "bot-field" } as const)
+	: {};
+
+const phName = en ? "Name" : "Nom";
+const phEmail = "E-mail";
+const phMessage = en ? "Your message" : "Votre message";
+const submitLabel = en ? "Send" : "Envoyer";
+const honeypotLabel = en ? "Do not fill in:" : "Ne pas remplir :";
+---
+
+<form name={formName} method="POST" action={formAction} class={className} {...netlifyFormAttrs}>
+	{useNetlify && <input type="hidden" name="form-name" value={formName} />}
+
+	{
+		useNetlify && (
+			<p class="hidden" aria-hidden="true">
+				<label>
+					{honeypotLabel} <input name="bot-field" tabindex="-1" autocomplete="off" />
+				</label>
+			</p>
+		)
+	}
+
+	<div class="grid gap-5 md:grid-cols-2">
+		<div>
+			<label for={`${idPrefix}-name`} class="sr-only">{phName}</label>
+			<input
+				id={`${idPrefix}-name`}
+				name="name"
+				type="text"
+				required
+				autocomplete="name"
+				placeholder={phName}
+				class="w-full rounded border-0 bg-white px-4 py-3.5 font-display text-sm text-zinc-900 placeholder:text-zinc-500 shadow-sm focus:ring-2 focus:ring-albatros-yellow focus:outline-none"
+			/>
+		</div>
+		<div>
+			<label for={`${idPrefix}-email`} class="sr-only">{phEmail}</label>
+			<input
+				id={`${idPrefix}-email`}
+				name="email"
+				type="email"
+				required
+				autocomplete="email"
+				placeholder={phEmail}
+				class="w-full rounded border-0 bg-white px-4 py-3.5 font-display text-sm text-zinc-900 placeholder:text-zinc-500 shadow-sm focus:ring-2 focus:ring-albatros-yellow focus:outline-none"
+			/>
+		</div>
+	</div>
+	<div>
+		<label for={`${idPrefix}-message`} class="sr-only">{phMessage}</label>
+		<textarea
+			id={`${idPrefix}-message`}
+			name="message"
+			required
+			rows={6}
+			placeholder={phMessage}
+			class="w-full resize-y rounded border-0 bg-white px-4 py-3.5 font-display text-sm text-zinc-900 placeholder:text-zinc-500 shadow-sm focus:ring-2 focus:ring-albatros-yellow focus:outline-none"
+		></textarea>
+	</div>
+	<div class="flex justify-center pt-2">
+		<button
+			type="submit"
+			class="min-w-[12rem] rounded-lg bg-albatros-yellow px-10 py-3.5 font-display text-sm font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
+		>
+			{submitLabel}
+		</button>
+	</div>
+</form>

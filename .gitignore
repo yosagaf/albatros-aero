@@ -1,0 +1,40 @@
+# build
+dist/
+
+# Astro
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment (secrets — never commit)
+.env
+.env.*
+!.env.example
+
+# Vercel / Netlify
+.vercel
+.netlify
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editors
+.idea/
+*.swp
+*.swo
+
+# testing / coverage (if added later)
+coverage/
+
+# TypeScript (if noEmit cache appears)
+*.tsbuildinfo

@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/site/Header.astro";
+import Footer from "../../components/site/Footer.astro";
+import ContactForm from "../../components/contact/ContactForm.astro";
+import "../../styles/global.css";
+---
+
+<BaseLayout
+	title="Contact — Albatros"
+	description="Contact Albatros — questions, meetings, product information."
+	lang="en"
+>
+	<Header variant="light" />
+	<main class="bg-albatros-charcoal text-white">
+		<section class="mx-auto max-w-4xl px-2 py-14 sm:px-4 lg:px-5 lg:py-20" id="formulaire">
+			<h1
+				class="text-center font-display text-lg font-semibold leading-relaxed text-white md:text-xl"
+				id="newsletter"
+			>
+				Ask a question, schedule a meeting, or request product information
+			</h1>
+			<div class="mx-auto mt-4 h-1 w-16 rounded-full bg-albatros-yellow"></div>
+
+			<ContactForm formName="contact" idPrefix="contact-en" lang="en" />
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>

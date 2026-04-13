@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import "../styles/global.css";
+---
+
+<BaseLayout
+	title="Missions — Albatros"
+	description="Détection et monitoring des feux de forêt par intelligence artificielle — missions Albatros."
+>
+	<Header variant="overlay" />
+	<main>
+		<section
+			class="relative flex min-h-[90vh] items-center bg-black py-28 md:min-h-screen md:py-36"
+			style="background-image: url('/media/home/banner-fire-detected.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+			aria-labelledby="missions-heading"
+		>
+			<div class="absolute inset-0 bg-black/35" aria-hidden="true"></div>
+			<div class="relative z-10 mx-auto w-full max-w-site px-2 sm:px-4 lg:px-5">
+				<div class="border-l-4 border-albatros-yellow pl-4">
+					<h1
+						id="missions-heading"
+						class="font-display text-2xl font-bold text-white drop-shadow-lg md:text-3xl lg:text-4xl"
+					>
+						Missions
+					</h1>
+				</div>
+				<div class="mt-10 max-w-3xl space-y-10">
+					<div>
+						<h2 class="font-display text-lg font-semibold text-white drop-shadow-md md:text-xl">
+							Détection des départs de feu par intelligence artificielle
+						</h2>
+						<p class="mt-4 text-sm leading-relaxed text-white/85 md:text-base">
+							Les drones embarquent une caméra multi-spectrale qui couvre de grandes surfaces de forêt, plus
+							qu’aucun autre moyen de détection en temps réel. L’IA permet de détecter un feu moins de 2
+							minutes après son éclosion.
+						</p>
+					</div>
+					<div>
+						<h2 class="font-display text-lg font-semibold text-white drop-shadow-md md:text-xl">
+							Monitoring des feux par intelligence artificielle
+						</h2>
+						<p class="mt-4 text-sm leading-relaxed text-white/85 md:text-base">
+							Lorsqu’un feu est détecté, un drone Albatros le survole à haute altitude, capture et traite les
+							données relatives à l’évolution de l’incendie, permettant aux pompiers de mettre en place la
+							stratégie d’extinction optimale.
+						</p>
+					</div>
+					<div class="flex flex-wrap gap-4 pt-2">
+						<a
+							href="/technologie"
+							class="inline-flex items-center justify-center rounded-lg bg-albatros-yellow px-8 py-3.5 font-display text-sm font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
+						>
+							Notre technologie
+						</a>
+						<a
+							href="/produits"
+							class="inline-flex items-center justify-center rounded-lg border-2 border-white/80 px-8 py-3.5 font-display text-sm font-semibold text-white uppercase tracking-wide transition hover:bg-white/10"
+						>
+							Nos produits
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</BaseLayout>
