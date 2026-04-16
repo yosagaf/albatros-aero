@@ -2,40 +2,52 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Header from "../../../components/site/Header.astro";
 import Footer from "../../../components/site/Footer.astro";
+import ProductHubSection from "../../../components/product/ProductHubSection.astro";
 import "../../../styles/global.css";
 
-const cards = [
+const products = [
 	{
-		title: "Wildfire AI assistant for your drones",
-		excerpt: "A plug-in to streamline drone operations (DJI, Parrot, etc.) on wildfire missions.",
-		href: "/en/produits/companion",
+		id: "companion",
+		productName: "Companion",
+		subtitle: "Wildfire AI assistant for your drones",
+		excerpt:
+			"A plug-in to streamline drone operations (DJI, Parrot, etc.) on wildfire missions.",
 		image: "/media/images/products/grid/companion-card.jpg",
 		imageAlt: "Firefighter operating a drone controller at a large fire at night",
+		href: "/en/produits/companion",
+		ctaLabel: "View product",
 	},
 	{
-		title: "Wildfire AI agent for fixed-wing aircraft and helicopters",
+		id: "coperator",
+		productName: "Coperator",
+		subtitle: "Wildfire AI agent for fixed-wing aircraft and helicopters",
 		excerpt:
 			"A software layer that automates time-consuming tasks for pilots and onboard sensor operators.",
-		href: "/en/produits/coperator",
 		image: "/media/images/products/grid/coperator-card.webp",
 		imageAlt: "Aerial platform in flight above forested terrain",
+		href: "/en/produits/coperator",
+		ctaLabel: "View product",
 	},
 	{
-		title: "Turnkey aircraft-based detection and monitoring",
+		id: "patrol",
+		productName: "Patrol",
+		subtitle: "Turnkey aircraft-based detection and monitoring",
 		excerpt:
 			"Forest surveillance, fire detection and monitoring with real-time alert distribution.",
-		href: "/en/produits/patrol",
 		image: "/media/images/products/grid/patrol-card.jpg",
 		imageAlt: "Light twin-engine aircraft in flight over rural farmland",
+		href: "/en/produits/patrol",
+		ctaLabel: "View product",
 	},
 	{
-		title: "Turnkey drone-based detection and monitoring",
+		id: "drone",
+		productName: "Drone",
+		subtitle: "Turnkey drone-based detection and monitoring",
 		excerpt:
-			"Autonomous or assisted drones, surveillance, detection and real-time alerts — available in 2027.",
-		href: "/en/produits/monitoring-drone",
+			"Autonomous or assisted drones, surveillance, detection and real-time alerts.",
 		image: "/media/images/products/grid/drone-card.webp",
 		imageAlt: "Drone surveillance — flight above forest canopy",
-		hideCta: true,
+		badge: "Coming 2027",
 	},
 ];
 ---
@@ -47,6 +59,7 @@ const cards = [
 >
 	<Header variant="overlay" />
 	<main>
+		<!-- Hero -->
 		<section
 			class="relative flex min-h-[75vh] items-end bg-cover bg-center pb-16 md:min-h-[85vh] md:items-center md:pb-24"
 			style="background-image: url('/media/images/products/hero-banner.webp');"
@@ -65,7 +78,7 @@ const cards = [
 						Built for professionals
 					</h1>
 				</div>
-				<a href="#product-grid"
+				<a href="#companion"
 					class="mt-8 inline-flex items-center justify-center rounded-lg bg-albatros-yellow px-8 py-3.5 font-display text-sm font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
 				>
 					Discover
@@ -73,35 +86,115 @@ const cards = [
 			</div>
 		</section>
 
-		<section id="product-grid" class="scroll-mt-24 bg-white py-16 md:py-24" aria-labelledby="grid-heading">
+		<!-- Sticky product navigation -->
+		<nav
+			class="sticky top-0 z-40 border-b border-zinc-200 bg-white/95 shadow-sm backdrop-blur-sm"
+			aria-label="Product navigation"
+			data-products-nav
+		>
 			<div class="mx-auto max-w-site px-2 sm:px-4 lg:px-5">
-				<h2 id="grid-heading" class="sr-only">Our offers</h2>
-				<div class="grid gap-8 md:gap-10 lg:grid-cols-2">
+				<ul class="flex items-center gap-2 overflow-x-auto py-3 md:justify-center md:gap-4">
 					{
-						cards.map((c) => (
-							<article class="card-hover overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm ring-1 ring-zinc-100">
-								<div class="grid md:grid-cols-2">
-									<div class="relative aspect-[4/3] md:aspect-auto md:min-h-[240px]">
-										<img src={c.image} alt={c.imageAlt} class="h-full w-full object-cover" loading="lazy" />
-									</div>
-									<div class="flex flex-col justify-center p-6 md:p-8">
-										<h3 class="font-display text-base font-bold text-albatros-yellow md:text-lg">{c.title}</h3>
-										<p class="mt-3 text-sm leading-relaxed text-zinc-600">{c.excerpt}</p>
-										{!c.hideCta && (
-											<a href={c.href}
-												class="mt-6 inline-flex self-start rounded-md bg-albatros-yellow px-5 py-2 font-display text-xs font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
-											>
-												View
-											</a>
-										)}
-									</div>
-								</div>
-							</article>
+						products.map((p) => (
+							<li class="flex-shrink-0">
+								<a
+									href={`#${p.id}`}
+									data-product-nav-link
+									data-target={p.id}
+									class="inline-flex items-center rounded-full px-4 py-2 font-display text-sm font-semibold text-zinc-700 transition hover:text-albatros-yellow md:text-base"
+								>
+									{p.productName}
+								</a>
+							</li>
 						))
 					}
-				</div>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Product sections -->
+		{
+			products.map((product, index) => (
+				<ProductHubSection
+					id={product.id}
+					productName={product.productName}
+					subtitle={product.subtitle}
+					excerpt={product.excerpt}
+					image={product.image}
+					imageAlt={product.imageAlt}
+					href={product.href}
+					ctaLabel={product.ctaLabel}
+					badge={product.badge}
+					bgVariant={index % 2 === 0 ? "white" : "zinc"}
+				/>
+			))
+		}
+
+		<!-- Final CTA -->
+		<section class="bg-albatros-charcoal py-14 md:py-20">
+			<div class="mx-auto max-w-4xl px-2 text-center sm:px-4 lg:px-5">
+				<p class="font-display text-lg font-semibold text-white md:text-xl">
+					Need a demo or more information?
+				</p>
+				<a href="/en/contact"
+					class="mt-8 inline-flex items-center justify-center rounded-lg bg-albatros-yellow px-8 py-3.5 font-display text-sm font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
+				>
+					Contact us
+				</a>
 			</div>
 		</section>
 	</main>
 	<Footer />
 </BaseLayout>
+
+<script>
+	function initProductsScrollSpy() {
+		const nav = document.querySelector<HTMLElement>("[data-products-nav]");
+		if (!nav) return;
+
+		const links = Array.from(
+			nav.querySelectorAll<HTMLAnchorElement>("[data-product-nav-link]")
+		);
+		if (links.length === 0) return;
+
+		const activeClasses = ["bg-albatros-yellow/15", "text-albatros-yellow"];
+		const inactiveClasses = ["text-zinc-700"];
+
+		const setActive = (targetId: string | null) => {
+			links.forEach((link) => {
+				const isActive = link.dataset.target === targetId;
+				activeClasses.forEach((cls) => link.classList.toggle(cls, isActive));
+				inactiveClasses.forEach((cls) => link.classList.toggle(cls, !isActive));
+			});
+		};
+
+		const sections = links
+			.map((link) => {
+				const id = link.dataset.target;
+				if (!id) return null;
+				return document.getElementById(id);
+			})
+			.filter((el): el is HTMLElement => el !== null);
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const visible = entries
+					.filter((entry) => entry.isIntersecting)
+					.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+				if (visible.length > 0) {
+					setActive(visible[0].target.id);
+				}
+			},
+			{
+				rootMargin: "-40% 0px -50% 0px",
+				threshold: [0, 0.25, 0.5, 0.75, 1],
+			}
+		);
+
+		sections.forEach((section) => observer.observe(section));
+	}
+
+	initProductsScrollSpy();
+	document.addEventListener("astro:after-swap", initProductsScrollSpy);
+</script>

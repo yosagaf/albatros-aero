@@ -16,7 +16,6 @@ const homeHref = prefix === "" ? "/" : "/en";
 
 const en = locale === "en";
 const nav = [
-	{ href: `${prefix}/missions`, label: "Missions" },
 	{ href: `${prefix}/technologie`, label: en ? "Technology" : "Technologie" },
 	{ href: `${prefix}/produits`, label: en ? "Products" : "Produits" },
 	{ href: `${prefix}/actualites`, label: en ? "News" : "Actualités" },
@@ -47,11 +46,9 @@ const linkClass = (href: string) => {
 			? `${base} font-bold text-albatros-yellow`
 			: `${base} text-zinc-800 hover:text-albatros-yellow`;
 	}
-	const glow = "[text-shadow:0_0_10px_rgba(255,255,255,0.6),0_0_20px_rgba(255,255,255,0.25)]";
-	const activeGlow = "[text-shadow:0_0_10px_rgba(245,185,62,0.7),0_0_20px_rgba(245,185,62,0.3)]";
 	return active
-		? `${base} font-bold text-albatros-yellow ${activeGlow}`
-		: `${base} ${glow} hover:text-albatros-yellow`;
+		? `${base} font-bold text-albatros-yellow nav-link-glow-active`
+		: `${base} nav-link-glow hover:text-albatros-yellow`;
 };
 
 const mobileBtnClass = isLight
@@ -94,7 +91,7 @@ const mobilePanelClass = isLight
 			</svg>
 		</button>
 
-		<nav class="hidden items-center gap-6 text-sm font-semibold lg:flex xl:gap-8">
+		<nav class="hidden items-center gap-6 text-base font-semibold lg:flex xl:gap-8">
 			{
 				nav.map(({ href, label }) => (
 					<a href={href} class:list={[linkClass(href)]}>
@@ -134,7 +131,7 @@ const mobilePanelClass = isLight
 	</div>
 
 	<div class:list={[mobilePanelClass]} hidden data-mobile-nav-panel>
-		<nav class="flex flex-col gap-3 text-sm font-semibold">
+		<nav class="flex flex-col gap-3 text-base font-semibold">
 			{
 				nav.map(({ href, label }) => (
 					<a href={href} class:list={["py-1", linkClass(href)]}>
