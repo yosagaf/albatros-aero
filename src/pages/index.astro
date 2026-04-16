@@ -104,6 +104,7 @@ import "../styles/global.css";
 					<div
 						class="impact-video-frame relative mx-auto aspect-[9/16] w-full max-w-[13.5rem] overflow-hidden rounded-lg bg-black shadow-xl ring-1 ring-white/10 sm:max-w-[15rem] md:max-w-[16rem] lg:mx-0"
 						data-impact-wrap
+						data-youtube-id="VSj29r3eQH4"
 						style="background-image: url('/media/images/home/video-poster.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"
 					>
 						<button
@@ -122,15 +123,6 @@ import "../styles/global.css";
 								Incendie de Ribaute — reportage
 							</span>
 						</button>
-						<video
-							class="impact-video absolute inset-0 z-20 hidden h-full w-full object-cover object-center"
-							controls
-							playsinline
-							preload="none"
-							poster="/media/images/home/video-poster.webp"
-						>
-							<source src="/media/videos/impact-report.mp4" type="video/mp4" />
-						</video>
 					</div>
 					<div class="flex flex-col justify-center gap-4">
 						<div
@@ -159,16 +151,23 @@ import "../styles/global.css";
 
 <script>
 	function initImpactPlayer() {
-		const wrap = document.querySelector("[data-impact-wrap]");
+		const wrap = document.querySelector<HTMLElement>("[data-impact-wrap]");
 		if (!wrap) return;
 		const btn = wrap.querySelector<HTMLButtonElement>(".impact-play");
-		const video = wrap.querySelector<HTMLVideoElement>(".impact-video");
-		if (!btn || !video) return;
+		const youtubeId = wrap.dataset.youtubeId;
+		if (!btn || !youtubeId) return;
 
 		const open = () => {
 			btn.classList.add("hidden");
-			video.classList.remove("hidden");
-			void video.play();
+			const iframe = document.createElement("iframe");
+			iframe.src = `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1`;
+			iframe.title = "Vidéo — Impact des feux de forêt";
+			iframe.loading = "lazy";
+			iframe.allow =
+				"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+			iframe.setAttribute("allowfullscreen", "");
+			iframe.className = "absolute inset-0 z-20 h-full w-full border-0";
+			wrap.appendChild(iframe);
 		};
 		btn.addEventListener("click", open);
 	}
