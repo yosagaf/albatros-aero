@@ -10,7 +10,7 @@ const cards = [
 		excerpt:
 			"Plug-in optimisant vos opérations drones (DJI, Parrot, etc.) en missions feux de forêt.",
 		href: "/produits/companion",
-		image: "/media/produits/enhaut-agauche.jpg",
+		image: "/media/images/products/grid/companion-card.jpg",
 		imageAlt: "Pompier utilisant une télécommande drone devant un incendie de nuit",
 	},
 	{
@@ -18,7 +18,7 @@ const cards = [
 		excerpt:
 			"Couche logicielle automatisant l’essentiel des tâches chronophages pour le pilote ou l’opérateur de bord.",
 		href: "/produits/coperator",
-		image: "/media/produits/enhaut-adroite.webp",
+		image: "/media/images/products/grid/coperator-card.webp",
 		imageAlt: "Plateforme aérienne en vol au-dessus des massifs forestiers",
 	},
 	{
@@ -26,16 +26,17 @@ const cards = [
 		excerpt:
 			"Surveillance des forêts, détection, monitoring des feux et transmission des alertes en temps réel.",
 		href: "/produits/patrol",
-		image: "/media/produits/enbas-aguache.jpg",
+		image: "/media/images/products/grid/patrol-card.jpg",
 		imageAlt: "Avion léger bi-moteur en vol au-dessus d’un paysage rural",
 	},
 	{
 		title: "Service clés en main de détection et monitoring par drone",
 		excerpt:
-			"Drone autonome, surveillance, détection et alertes en temps réel — disponibilité selon calendrier produit.",
+			"Drone autonome, surveillance, détection et alertes en temps réel — disponible en 2027.",
 		href: "/produits/monitoring-drone",
-		image: "/media/produits/enbas-adroite.webp",
+		image: "/media/images/products/grid/drone-card.webp",
 		imageAlt: "Surveillance par drone — vol au-dessus du couvert forestier",
+		hideCta: true,
 	},
 ];
 ---
@@ -48,7 +49,7 @@ const cards = [
 	<main>
 		<section
 			class="relative flex min-h-[75vh] items-end bg-cover bg-center pb-16 md:min-h-[85vh] md:items-center md:pb-24"
-			style="background-image: url('/media/produits/banner-produit.webp');"
+			style="background-image: url('/media/images/products/hero-banner.webp');"
 			aria-labelledby="produits-hero-heading"
 		>
 			<div class="absolute inset-0 bg-black/40 md:bg-black/35"></div>
@@ -90,11 +91,13 @@ const cards = [
 									<div class="flex flex-col justify-center p-6 md:p-8">
 										<h3 class="font-display text-base font-bold text-albatros-yellow md:text-lg">{c.title}</h3>
 										<p class="mt-3 text-sm leading-relaxed text-zinc-600">{c.excerpt}</p>
-										<a href={c.href}
-											class="mt-6 inline-flex self-start rounded-md bg-albatros-yellow px-5 py-2 font-display text-xs font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
-										>
-											Voir
-										</a>
+										{!c.hideCta && (
+											<a href={c.href}
+												class="mt-6 inline-flex self-start rounded-md bg-albatros-yellow px-5 py-2 font-display text-xs font-bold text-white uppercase tracking-wide transition hover:bg-albatros-yellow-hover"
+											>
+												Voir
+											</a>
+										)}
 									</div>
 								</div>
 							</article>

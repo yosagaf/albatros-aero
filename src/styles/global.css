@@ -11,11 +11,14 @@
 	--color-albatros-yellow-hover: #ffca5c;
 	--color-albatros-charcoal: #2a2a2a;
 	--color-albatros-footer: #252525;
+	--color-albatros-title-grey: #3e3d3d;
 }
 
 @layer base {
 	html {
 		@apply scroll-smooth;
+		/* Léger zoom arrière par rapport au réglage navigateur (~94 % du 16 px par défaut) */
+		font-size: 94%;
 	}
 
 	body {
@@ -31,6 +34,10 @@
 
 	.tech-section-title {
 		@apply font-display text-xl font-extrabold uppercase leading-snug tracking-[0.1em] text-zinc-900 md:text-2xl lg:text-[1.7rem];
+	}
+
+	.tech-section-title.text-albatros-title-grey {
+		color: var(--color-albatros-title-grey);
 	}
 
 	.tech-section-title--inverse {

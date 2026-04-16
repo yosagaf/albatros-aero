@@ -13,7 +13,7 @@ const articles = [
 			"Retour sur nos échanges avec les opérateurs aériens et les SDIS autour de la détection précoce et du partage d'information.",
 		details:
 			"Le Congrès national des Sapeurs-pompiers 2025 a été l'occasion pour Albatros de présenter ses solutions de détection et de monitoring aérien aux décideurs du monde de la sécurité civile. Nos équipes ont pu échanger directement avec les SDIS sur les enjeux opérationnels de la surveillance des feux de forêt et démontrer comment nos technologies permettent une réponse plus rapide et mieux coordonnée sur le terrain.",
-		image: "/media/actualites/congres.jpeg",
+		image: "/media/images/news/firefighters-congress.jpeg",
 	},
 	{
 		title: "Albatros au salon du Bourget 2025",
@@ -22,7 +22,7 @@ const articles = [
 			"Retour sur notre présence au salon du Bourget et les rencontres avec les acteurs de la surveillance aérienne et de la lutte contre les feux.",
 		details:
 			"Au salon international de l'aéronautique et de l'espace du Bourget, Albatros a présenté ses capacités de surveillance et de détection des feux de forêt par voie aérienne. Ce rendez-vous majeur a permis de rencontrer des partenaires industriels, des opérateurs aériens et des représentants institutionnels intéressés par nos solutions de monitoring en temps réel.",
-		image: "/media/actualites/bourget.jpeg",
+		image: "/media/images/news/paris-air-show.jpeg",
 	},
 	{
 		title: "Albatros expose au rendez-vous mondiale des professionnels",
@@ -31,7 +31,7 @@ const articles = [
 			"Présentation de nos solutions de détection et monitoring aérien lors des rendez-vous mondiaux de la sécurité civile.",
 		details:
 			"Lors des rendez-vous mondiaux de la sécurité civile, Albatros a exposé ses solutions innovantes de détection précoce et de monitoring des feux de forêt. Cet événement international a rassemblé les acteurs majeurs de la protection civile, offrant une vitrine idéale pour démontrer l'efficacité de nos systèmes de surveillance aérienne auprès d'un public de professionnels.",
-		image: "/media/actualites/rendez-vous-mondiale.jpeg",
+		image: "/media/images/news/world-conference.jpeg",
 	},
 	{
 		title: "En partenariat avec les pompiers de l'Aude, une expérimentation",
@@ -40,7 +40,7 @@ const articles = [
 			"Dans l'objectif de faire face à l'augmentation du risque, le SDIS 11 trouve en Albatros une des solutions pour l'avenir.",
 		details:
 			"En collaboration avec le SDIS de l'Aude, Albatros a mené une expérimentation en conditions réelles pour évaluer la détection précoce des feux de forêt et l'appui aux équipes sur le terrain. Face à l'augmentation du risque incendie dans le département, ce partenariat vise à tester et valider des solutions technologiques permettant d'améliorer la réactivité et l'efficacité des interventions.",
-		image: "/media/technologie/image-banner.webp",
+		image: "/media/images/technology/hero-banner.webp",
 	},
 ];
 ---
@@ -50,7 +50,7 @@ const articles = [
 	<main>
 		<section class="bg-white py-14 text-zinc-900 md:py-20" aria-labelledby="actu-heading">
 			<div class="mx-auto max-w-site px-2 sm:px-4 lg:px-5">
-				<h1 id="actu-heading" class="text-center font-display text-2xl font-extrabold uppercase tracking-tight md:text-3xl lg:text-4xl">
+				<h1 id="actu-heading" class="text-center font-display text-2xl font-extrabold uppercase tracking-tight text-albatros-title-grey md:text-3xl lg:text-4xl">
 					L'actualité d'Albatros
 				</h1>
 				<div class="mx-auto mt-4 h-1 w-16 rounded-full bg-albatros-yellow"></div>
@@ -63,7 +63,7 @@ const articles = [
 										<img src={a.image} alt="" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
 									</div>
 									<div class="flex flex-col p-5 sm:col-span-3 sm:p-6">
-										<h2 class="font-display text-base font-bold text-zinc-900 md:text-lg">{a.title}</h2>
+										<h2 class="font-display text-base font-bold text-albatros-title-grey md:text-lg">{a.title}</h2>
 										<p class="mt-2 font-display text-xs font-medium text-zinc-500">{a.date}</p>
 										<p class="mt-3 text-sm leading-relaxed text-zinc-600">{a.excerpt}</p>
 										<p class="mt-2 text-sm leading-relaxed text-zinc-500">{a.details}</p>

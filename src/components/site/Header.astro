@@ -15,9 +15,7 @@ const prefix = locale === "en" ? "/en" : "";
 const homeHref = prefix === "" ? "/" : "/en";
 
 const en = locale === "en";
-const homeLabel = en ? "Home" : "Accueil";
 const nav = [
-	{ href: homeHref, label: homeLabel },
 	{ href: `${prefix}/missions`, label: "Missions" },
 	{ href: `${prefix}/technologie`, label: en ? "Technology" : "Technologie" },
 	{ href: `${prefix}/produits`, label: en ? "Products" : "Produits" },
@@ -49,7 +47,11 @@ const linkClass = (href: string) => {
 			? `${base} font-bold text-albatros-yellow`
 			: `${base} text-zinc-800 hover:text-albatros-yellow`;
 	}
-	return active ? `${base} font-bold text-albatros-yellow` : `${base} hover:text-albatros-yellow`;
+	const glow = "[text-shadow:0_0_10px_rgba(255,255,255,0.6),0_0_20px_rgba(255,255,255,0.25)]";
+	const activeGlow = "[text-shadow:0_0_10px_rgba(245,185,62,0.7),0_0_20px_rgba(245,185,62,0.3)]";
+	return active
+		? `${base} font-bold text-albatros-yellow ${activeGlow}`
+		: `${base} ${glow} hover:text-albatros-yellow`;
 };
 
 const mobileBtnClass = isLight
@@ -75,10 +77,8 @@ const mobilePanelClass = isLight
 
 <header class:list={[headerClass, "font-display"]} data-site-header>
 	<div class="mx-auto flex max-w-site items-center justify-between gap-4 px-2 pt-6 pb-4 sm:px-4 lg:px-5">
-		<a href={homeHref}
-			class:list={["text-xl font-extrabold tracking-wide text-albatros-yellow sm:text-2xl uppercase"]}
-		>
-			Albatros
+		<a href={homeHref} class="block">
+			<img src="/media/brand/logo.png" alt="Albatros" class:list={["h-7 w-auto sm:h-8", !isLight && "drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"]} />
 		</a>
 
 		<button
