@@ -80,7 +80,7 @@
 
 	/* Cards produits & actualités — hover lift */
 	.card-hover {
-		@apply transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-lg;
+		@apply transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50;
 	}
 
 	/* CTA boutons — ombre subtile */
