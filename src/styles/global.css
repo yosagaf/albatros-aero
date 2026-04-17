@@ -6,7 +6,7 @@
 }
 
 .nav-link-glow-active {
-	text-shadow: 0 0 10px rgba(245, 185, 62, 0.7), 0 0 20px rgba(245, 185, 62, 0.3);
+	text-shadow: 0 0 10px rgba(255, 185, 29, 0.7), 0 0 20px rgba(255, 185, 29, 0.3);
 }
 
 @theme {
@@ -16,8 +16,8 @@
 	/* Largeur max du contenu */
 	--max-width-site: 100rem;
 
-	--color-albatros-yellow: #f5b93e;
-	--color-albatros-yellow-hover: #ffca5c;
+	--color-albatros-yellow: #ffb91d;
+	--color-albatros-yellow-hover: #ffc94d;
 	--color-albatros-charcoal: #2a2a2a;
 	--color-albatros-footer: #252525;
 	--color-albatros-title-grey: #3e3d3d;
@@ -80,7 +80,11 @@
 
 	/* Cards produits & actualités — hover lift */
 	.card-hover {
-		@apply transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50;
+		@apply transition-all duration-200 ease-out hover:-translate-y-1;
+	}
+
+	.card-hover:hover {
+		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 6px 12px rgba(0, 0, 0, 0.25);
 	}
 
 	/* CTA boutons — ombre subtile */
